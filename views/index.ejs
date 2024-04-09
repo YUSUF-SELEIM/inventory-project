@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Awesome App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100">
+    <nav class="w-full bg-gray-800 text-white flex justify-between items-center py-4 px-5">
+      <div>
+      <a href="/" class="inline-block px-4 py-2">Home</a>
+      <a href="/create" class="inline-block px-4 py-2">Create Category</a>
+      </div>
+      <div><h1>JOE's Inventory</h1></div>
+    </nav>
+
+    <div class="container mx-auto mt-4 px-4">
+      <h1 class="text-3xl font-bold py-4"><%= title %></h1>
+  <% if (category_list.length) { %>
+    <ul>
+      <% category_list.forEach((category) => { %>
+       <div class="py-4">
+        <li class="text-2xl font-light text-blue-500">
+          <a href="<%= category.url %>"><%= category.name %></a>
+         
+        </li>
+        <li class="text-xs">
+          <%= category.description %>
+        </li>
+       </div>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>There are no authors.</p>
+  <% } %>
+    </div>
+  </body>
+</html>

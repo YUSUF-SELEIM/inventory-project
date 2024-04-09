@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded shadow-md max-w-md w-full">
+        <h1 class="text-3xl font-bold mb-4 text-center"><%= title %></h1>
+        <form method="POST">
+            <div class="mb-4">
+                <label for="itemName" class="block text-gray-700 font-bold mb-2">Item Name</label>
+                <input type="text" id="itemName" name="itemName" class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="<%= typeof item !== 'undefined' ? item.name : '' %>" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
+                <textarea id="description" name="description" class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 resize-none" required><%= typeof item !== 'undefined' ? item.description : '' %></textarea>
+            </div>
+            <input type="hidden" name="categoryID" value="<%= typeof categoryID !== 'undefined' ? categoryID : '' %>">
+            <div class="mb-4">
+                <label for="price" class="block text-gray-700 font-bold mb-2">Price</label>
+                <input type="number" id="price" name="price" class="form-input rounded-md shadow-sm" placeholder="Enter item price" value="<%= typeof item !== 'undefined' ? item.price : '' %>" required>
+            </div>
+            <div class="mb-4">
+                <label for="quantity" class="block text-gray-700 font-bold mb-2">Quantity</label>
+                <input type="number" id="quantity" name="quantity" class="form-input rounded-md shadow-sm" placeholder="Enter item quantity" value="<%= typeof item !== 'undefined' ? item.quantity : '' %>" required>
+            </div>
+            <div class="flex justify-end">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"><%= title %></button>
+            </div>
+        </form>
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+            <ul class="mt-4 flex flex-col space-y-2">
+                <% errors.forEach(error => { %>
+                    <li class="text-sm text-red-800 bg-red-200 border border-red-600 p-2 rounded"><%= error.msg %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </div>
+</body>
+</html>
